@@ -5,6 +5,28 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/arm.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/arm1.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/arm_Skeleton.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/armMat.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/arms2.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/3/XC/YLF66JFB4XKDT2SWEGYZR0.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/FbxScene_arms2.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/fparmsColor.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/fparmsNormal.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FirstPersonArms/ImportedArms/fparmsRoughness.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Cube_005.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/FbxScene_FN-5_Rigged.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/5/UC/87FUR77TD4WJJ85ZH1KWFA.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/FbxScene_Sci-Fi_Sword.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/FN-5_Rigged.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_001.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_002.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_003.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_004.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_006.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Material_007.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/FPWeapon/Sci-Fi_Sword.uasset",
 				"C:/Users/marco/Documents/Unreal Projects/Survival_FPS/Content/StarterContent/Architecture/Floor_400x400.uasset"
 			]
 		}
