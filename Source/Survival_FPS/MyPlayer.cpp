@@ -2,6 +2,7 @@
 
 
 #include "MyPlayer.h"
+#include "Gun.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -16,6 +17,10 @@ void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+	Gun->SetOwner(this);
 }
 
 // Called every frame
@@ -37,6 +42,7 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("LookUpRate"), this, &AMyPlayer::LookUpRate);
 	PlayerInputComponent->BindAxis(TEXT("LookRightRate"), this, &AMyPlayer::LookRightRate);
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AMyPlayer::Shoot);
 }
 
 void AMyPlayer::MoveForward(float AxisValue)
@@ -69,3 +75,7 @@ void AMyPlayer::LookRight(float AxisValue)
 	AddControllerYawInput(AxisValue);
 }
 
+void AMyPlayer::Shoot()
+{
+	Gun->PullTrigger();
+}

@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "MyPlayer.generated.h"
 
+
+class AGun;
+
 UCLASS()
 class SURVIVAL_FPS_API AMyPlayer : public ACharacter
 {
@@ -33,7 +36,14 @@ private:
 	void LookRight(float AxisValue);
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
+	void Shoot();
 
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 10;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AGun> GunClass;
+
+	UPROPERTY()
+	AGun* Gun;
 };
