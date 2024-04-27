@@ -11,6 +11,10 @@
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AssetPacks/ParagonWraith/Characters/Heroes/Wraith/Meshes/Wraith_Skeleton.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AssetPacks/ParagonWraith/Characters/Heroes/Wraith/Meshes/Wraith.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/ABP_MyPlayer.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_ShooterAIController.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AI/BB_Enemy.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AI/BP_ShooterAIController.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AI/BT_Enemy.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_Gun.uasset"
 			]
 		}

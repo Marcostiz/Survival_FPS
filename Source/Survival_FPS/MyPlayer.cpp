@@ -3,6 +3,7 @@
 
 #include "MyPlayer.h"
 #include "Gun.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -43,6 +44,12 @@ float AMyPlayer::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent,
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
 	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), Health);
+
+	if (IsDead())
+	{
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 
 	return DamageToApply;
 }
