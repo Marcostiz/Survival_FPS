@@ -7,10 +7,11 @@
 			"files": [
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_MyPlayer.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/Sandbox.umap",
-				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_Gun.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_Rifle.uasset",
 				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AssetPacks/ParagonWraith/Characters/Heroes/Wraith/Meshes/Wraith_Skeleton.uasset",
-				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AssetPacks/ParagonWraith/Characters/Heroes/Wraith/Meshes/Wraith.uasset"
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/AssetPacks/ParagonWraith/Characters/Heroes/Wraith/Meshes/Wraith.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/ABP_MyPlayer.uasset",
+				"C:/Users/Pablo/Documents/GitHub/Survival_FPS/Content/BP_Gun.uasset"
 			]
 		}
 	]
