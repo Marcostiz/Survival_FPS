@@ -43,6 +43,8 @@ private:
 	void LookRight(float AxisValue);
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
+	void SwitchWeapons();
+	void SpawnWeapons();
 	
 
 	UPROPERTY(EditAnywhere)
@@ -54,10 +56,22 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	float Health;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY()
 	AGun* Gun;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<AGun>> GunClassArray;
+
+	UPROPERTY(EditAnywhere)
+	TArray<AGun*> GunArray;
+
+	UPROPERTY(EditAnywhere)
+	int ActiveIndex;
+
+	UPROPERTY(EditAnywhere)
+	bool isEnemy;
 
 };

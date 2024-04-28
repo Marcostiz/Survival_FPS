@@ -22,43 +22,51 @@ AGun::AGun()
 
 void AGun::PullTrigger()
 {
-	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
-
-	APawn* OwnerPawn = Cast<APawn>(GetOwner());
-	if (OwnerPawn == nullptr) return;
-	AController* OwnerController = OwnerPawn->GetController();
-	if (OwnerController == nullptr) return;
-
-	FVector Location;
-	FRotator Rotation;
-
-	OwnerController->GetPlayerViewPoint(Location, Rotation);
-
-	FVector End = Location + Rotation.Vector() * MaxRange;
-	//TODO: LineTrace
-
-	//DrawDebugPoint(GetWorld(), Location, 20, FColor::Red, true);
-
-	//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
-
-	FHitResult Hit;
-	FCollisionQueryParams Params;
-	Params.AddIgnoredActor(this);
-	Params.AddIgnoredActor(GetOwner());
-	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel2, Params);
-	if (bSuccess)
+	if (CurrentAMMO > 0)
 	{
-		FVector ShotDirection = -Rotation.Vector();
-		//DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());	
-		
-		AActor* HitActor = Hit.GetActor();
+		CurrentAMMO--;
+		UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 
-		if (HitActor != nullptr)
+		APawn* OwnerPawn = Cast<APawn>(GetOwner());
+		if (OwnerPawn == nullptr) return;
+		AController* OwnerController = OwnerPawn->GetController();
+		if (OwnerController == nullptr) return;
+
+		FVector Location;
+		FRotator Rotation;
+
+		OwnerController->GetPlayerViewPoint(Location, Rotation);
+
+		FVector End = Location + Rotation.Vector() * MaxRange;
+		//TODO: LineTrace
+
+		//DrawDebugPoint(GetWorld(), Location, 20, FColor::Red, true);
+
+		//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
+
+		FHitResult Hit;
+		FCollisionQueryParams Params;
+		Params.AddIgnoredActor(this);
+		Params.AddIgnoredActor(GetOwner());
+		bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel2, Params);
+		if (bSuccess)
 		{
-			FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
-			HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+			FVector ShotDirection = -Rotation.Vector();
+			//DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
+
+			AActor* HitActor = Hit.GetActor();
+
+			if (HitActor != nullptr)
+			{
+				FPointDamageEvent DamageEvent(Damage, Hit, ShotDirection, nullptr);
+				HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+			}
 		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NO AMMO"));
 	}
 }
 
@@ -67,6 +75,7 @@ void AGun::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	CurrentAMMO = MaxAMMO;
 }
 
 // Called every frame

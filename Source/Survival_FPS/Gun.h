@@ -43,4 +43,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float Damage = 10;
+
+	UPROPERTY(EditAnywhere)
+	float CurrentAMMO;
+
+	UPROPERTY(EditAnywhere)
+	float MaxAMMO = 10;
 };

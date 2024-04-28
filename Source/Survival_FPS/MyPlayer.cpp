@@ -4,6 +4,9 @@
 #include "MyPlayer.h"
 #include "Gun.h"
 #include "Components/CapsuleComponent.h"
+#include "SimpleShooterGameModeBase.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -19,11 +22,26 @@ void AMyPlayer::BeginPlay()
 	Super::BeginPlay();
 
 	Health = MaxHealth;
-	
-	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+	ActiveIndex = 0;
+	//UE_LOG(LogTemp, Warning, TEXT("ClassArraySize %i"), GunClassArray.Num());
+
+	/*Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
-	Gun->SetOwner(this);
+	Gun->SetOwner(this);*/
+	/*if (isEnemy)
+	{
+		Gun = GetWorld()->SpawnActor<AGun>(GunClass);
+		GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
+		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+		Gun->SetOwner(this);
+	}
+	else
+	{
+		SpawnWeapons();
+	}*/
+	SpawnWeapons();
+	
 }
 
 bool AMyPlayer::IsDead() const
@@ -36,6 +54,14 @@ void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	for (int32 i = 0; i < GunArray.Num(); i++)
+	{
+		if (i != ActiveIndex)
+		{
+			GunArray[i]->SetHidden(true);
+			GunArray[i]->SetActorHiddenInGame(true);
+		}
+	}
 }
 
 float AMyPlayer::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -47,8 +73,13 @@ float AMyPlayer::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent,
 
 	if (IsDead())
 	{
+		ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
+		if (GameMode != nullptr)
+		{
+			GameMode->PawnKilled(this);
+		}
 		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);	
 	}
 
 	return DamageToApply;
@@ -67,6 +98,9 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("LookRightRate"), this, &AMyPlayer::LookRightRate);
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AMyPlayer::Shoot);
+	PlayerInputComponent->BindAction(TEXT("SwitchWeapon"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeapons);
+	//PlayerInputComponent->BindAction(TEXT("SwitchWeaponUp"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeaponUp);
+	//PlayerInputComponent->BindAction(TEXT("SwitchWeaponDown"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeaponDown);
 }
 
 void AMyPlayer::MoveForward(float AxisValue)
@@ -102,4 +136,38 @@ void AMyPlayer::LookRight(float AxisValue)
 void AMyPlayer::Shoot()
 {
 	Gun->PullTrigger();
+}
+
+void AMyPlayer::SwitchWeapons()
+{
+	if (ActiveIndex == 2)
+	{
+		ActiveIndex = 0;
+	}
+	else
+	{
+		ActiveIndex++;
+	}
+	if (GunArray.IsValidIndex(ActiveIndex))
+	{
+		Gun->SetActorHiddenInGame(true);
+		Gun = GunArray[ActiveIndex];
+		Gun->SetActorHiddenInGame(false);
+	}	
+}
+
+void AMyPlayer::SpawnWeapons()
+{
+	for (int32 i = 0; i < GunClassArray.Num(); i++)
+	{
+		Gun = GetWorld()->SpawnActor<AGun>(GunClassArray[i]);
+		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+		GunArray.Add(Gun);
+		if (i != ActiveIndex)
+		{
+			Gun->SetActorHiddenInGame(true);
+		}
+	}
+	Gun->SetOwner(this);
+	Gun = GunArray[ActiveIndex];
 }
