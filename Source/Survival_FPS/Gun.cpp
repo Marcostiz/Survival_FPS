@@ -37,12 +37,16 @@ void AGun::PullTrigger()
 
 		OwnerController->GetPlayerViewPoint(Location, Rotation);
 
+		//UE_LOG(LogTemp, Warning, TEXT("LOCATION X: %f"), Location.X);
+		//UE_LOG(LogTemp, Warning, TEXT("LOCATION Y: %f"), Location.Y);
+		//UE_LOG(LogTemp, Warning, TEXT("LOCATION Z: %f"), Location.Z);
+
 		FVector End = Location + Rotation.Vector() * MaxRange;
-		//TODO: LineTrace
 
 		//DrawDebugPoint(GetWorld(), Location, 20, FColor::Red, true);
 
 		//DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2, FColor::Red, true);
+		
 
 		FHitResult Hit;
 		FCollisionQueryParams Params;
@@ -56,6 +60,8 @@ void AGun::PullTrigger()
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactEffect, Hit.Location, ShotDirection.Rotation());
 
 			AActor* HitActor = Hit.GetActor();
+
+			//DrawDebugLine(GetWorld(), Location, Hit.Location, FColor::Red);
 
 			if (HitActor != nullptr)
 			{

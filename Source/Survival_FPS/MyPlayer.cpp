@@ -23,6 +23,8 @@ void AMyPlayer::BeginPlay()
 
 	Health = MaxHealth;
 	ActiveIndex = 0;
+	Score = 0;
+	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	//UE_LOG(LogTemp, Warning, TEXT("ClassArraySize %i"), GunClassArray.Num());
 
 	/*Gun = GetWorld()->SpawnActor<AGun>(GunClass);
@@ -138,6 +140,26 @@ void AMyPlayer::Shoot()
 	Gun->PullTrigger();
 }
 
+void AMyPlayer::SetScore(int score)
+{
+	this->Score = score;
+}
+
+int AMyPlayer::GetScore()
+{
+	return Score;
+}
+
+void AMyPlayer::SetAddToScoreWhenKilled(int score)
+{
+	this->AddToScoreWhenKilled = score;
+}
+
+int AMyPlayer::GetAddToScoreWhenKilled()
+{
+	return AddToScoreWhenKilled;
+}
+
 void AMyPlayer::SwitchWeapons()
 {
 	if (ActiveIndex == 2)
@@ -153,6 +175,7 @@ void AMyPlayer::SwitchWeapons()
 		Gun->SetActorHiddenInGame(true);
 		Gun = GunArray[ActiveIndex];
 		Gun->SetActorHiddenInGame(false);
+		Gun->SetOwner(this);
 	}	
 }
 
@@ -168,6 +191,6 @@ void AMyPlayer::SpawnWeapons()
 			Gun->SetActorHiddenInGame(true);
 		}
 	}
-	Gun->SetOwner(this);
 	Gun = GunArray[ActiveIndex];
+	Gun->SetOwner(this);
 }

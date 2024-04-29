@@ -36,6 +36,11 @@ public:
 
 	void Shoot();
 
+	void SetScore(int score);
+	int GetScore();
+	void SetAddToScoreWhenKilled(int score);
+	int GetAddToScoreWhenKilled();
+
 private:
 	void MoveForward(float AxisValue);
 	void LookUp(float AxisValue);
@@ -74,4 +79,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool isEnemy;
 
+	UPROPERTY(EditAnywhere)
+	int Score;
+
+	UPROPERTY(EditAnywhere)
+	int AddToScoreWhenKilled;
 };
