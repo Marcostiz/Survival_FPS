@@ -21,9 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	//UPROPERTY(EditAnywhere)
-	//float AcceptanceRadius = 200;
-
+	//Parámetro que indica el BehaviourTree a seguir por la IA
 	UPROPERTY(EditAnywhere)
 	class UBehaviorTree* AIBehavior;
 };

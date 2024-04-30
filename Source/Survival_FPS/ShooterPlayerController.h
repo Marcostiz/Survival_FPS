@@ -14,12 +14,16 @@ class SURVIVAL_FPS_API AShooterPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+	//Clase que hereda de PlayerController, usada para el GameMode
 public:
+	//Función que gestiona lo que pasa al acabar la partida
 	virtual void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
 private:
+	//Delay del respawn
 	UPROPERTY(EditAnywhere)
 	float RestartDelay = 5;
 
+	//Handler de tiempo
 	FTimerHandle RestartTimer;
 };

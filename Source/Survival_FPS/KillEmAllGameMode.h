@@ -14,6 +14,8 @@ class SURVIVAL_FPS_API AKillEmAllGameMode : public ASimpleShooterGameModeBase
 {
 	GENERATED_BODY()
 	
+	//Gamemode que hereda de su base SimpleShooterGameModeBase
 public:
+	//Override de la función heredada PawnKilled, que comprueba qué peón ha muerto y actúa en consecuencia
 	virtual void PawnKilled(APawn* PawnKilled) override;
 };

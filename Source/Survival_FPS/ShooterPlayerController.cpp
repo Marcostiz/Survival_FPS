@@ -8,7 +8,6 @@ void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIs
 {
 	Super::GameHasEnded(EndGameFocus, bIsWinner);
 
-	//UE_LOG(LogTemp, Warning, TEXT("We have finished"));
-
+	//Reinicia el nivel tras pasar el tiempo indicado
 	GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
 }

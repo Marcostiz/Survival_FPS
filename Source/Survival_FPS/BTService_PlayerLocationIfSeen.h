@@ -14,10 +14,13 @@ class SURVIVAL_FPS_API UBTService_PlayerLocationIfSeen : public UBTService_Black
 {
 	GENERATED_BODY()
 	
+	//Servicio creado para el nodo raíz del árbol
 public:
+	//Constructor para cambiar el nomber del servicio en el editor
 	UBTService_PlayerLocationIfSeen();
 
 protected:
+	//Override del tick del nodo para añadir funcionalidades
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
 };
