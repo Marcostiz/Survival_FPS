@@ -53,10 +53,10 @@ private:
 	float Damage = 10;
 
 	//Munición actual del arma
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float CurrentAMMO;
 
 	//Munición máxima del arma
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float MaxAMMO = 10;
 };

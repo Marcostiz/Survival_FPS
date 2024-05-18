@@ -75,6 +75,15 @@ private:
 
 	//Función que se encarga de spawnear las armas del personaje
 	void SpawnWeapons();
+
+	////Funcion para abrir el menu de pause
+	//void Pause();
+	////Pause Menu
+	//UPROPERTY(EditAnywhere)
+	//TSubclassOf<class UUserWidget> PauseMenuClass;
+
+	////Character controller para actvar el mouse
+	//class APlayerController* MyController;
 	
 	//Parámetro que se usa en las funciones de adaptación del movimiento de la cámara con el mando
 	//EditAnywhere para poder modificarlo desde el editor facilitando el ajuste del parámetro
@@ -83,12 +92,12 @@ private:
 
 	//Parámetro que indica la vida máxima del personaje
 	//EditAnywhere para poder modificarlo desde el editor facilitando el ajuste del parámetro
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float MaxHealth = 100;
 
 	//Parámetro que indica la vida actual del personaje
 	//Solo visible para que no se pueda modificar en ningún momento desde el editor
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Health;
 
 	//Parámetro que de la clase de nuestras armas, se le pasa luego en el editor
@@ -96,7 +105,7 @@ private:
 	TSubclassOf<AGun> GunClass;
 
 	//Parámetro que almacena el arma en uso del personaje
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	AGun* Gun;
 
 	//Array de los distintos blueprints que heredan de AGun, la clase usada para las armas del personaje
@@ -116,7 +125,7 @@ private:
 	bool isEnemy;
 
 	//Parámetro que indica el Score actual del personaje
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	int Score;
 
 	//Parámetro que indica los puntos que suben al score del personaje que lo mate

@@ -5,6 +5,7 @@
 #include "MyPlayer.h"
 #include "Kismet/GameplayStatics.h"
 
+
 void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 {
 	Super::PawnKilled(PawnKilled);
@@ -37,3 +38,4 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 		
 	}
 }
+

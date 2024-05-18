@@ -7,6 +7,7 @@
 #include "SimpleShooterGameModeBase.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
 
 // Sets default values
 AMyPlayer::AMyPlayer()
@@ -93,6 +94,7 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AMyPlayer::Shoot);
 	PlayerInputComponent->BindAction(TEXT("SwitchWeapon"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeapons);
+	//PlayerInputComponent->BindAction(TEXT("PauseMenu"), EInputEvent::IE_Pressed, this, &AMyPlayer::Pause);
 	//PlayerInputComponent->BindAction(TEXT("SwitchWeaponUp"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeaponUp);
 	//PlayerInputComponent->BindAction(TEXT("SwitchWeaponDown"), EInputEvent::IE_Pressed, this, &AMyPlayer::SwitchWeaponDown);
 }
@@ -142,6 +144,33 @@ void AMyPlayer::Shoot()
 {
 	Gun->PullTrigger();
 }
+
+//LLamada para activar el menu de pausa
+//void AMyPlayer::Pause() 
+//{
+//	MyController = GetWorld()->GetFirstPlayerController();
+//	UUserWidget* PauseScreen = CreateWidget(MyController, PauseMenuClass);
+//	
+//	if (!UGameplayStatics::IsGamePaused(GetWorld()))
+//	{
+//		if (PauseScreen != nullptr) {
+//			PauseScreen->AddToViewport();
+//			MyController->bShowMouseCursor = true;
+//			MyController->bEnableClickEvents = true;
+//			MyController->bEnableMouseOverEvents = true;
+//			UGameplayStatics::SetGamePaused(GetWorld(), true);
+//		}
+//	}
+//	else 
+//	{
+//		PauseScreen->RemoveFromParent();
+//		PauseScreen->RemoveFromRoot();
+//		MyController->bShowMouseCursor = false;
+//		MyController->bEnableClickEvents = false;
+//		MyController->bEnableMouseOverEvents = false;
+//		UGameplayStatics::SetGamePaused(GetWorld(), false);
+//	}
+//}
 
 //Setter y getter del score actual
 void AMyPlayer::SetScore(int score)

@@ -24,6 +24,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RestartDelay = 5;
 
+	//Widget deathScreen
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> LoseScreenClass;
+
 	//Handler de tiempo
 	FTimerHandle RestartTimer;
 };
